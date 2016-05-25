@@ -6,6 +6,7 @@ class SessionProxy
   IDP_AUTHN_RESPONSE_PATH = "#{PATH}/idp-authn-response".freeze
   SESSION_STATE_PATH = "#{PATH}/state".freeze
   MATCHING_OUTCOME_PATH = "#{PATH}/matching-outcome".freeze
+  RESPONSE_FROM_RP_PATH = "#{PATH}/response-from-rp".freeze
   PARAM_SAML_REQUEST = 'samlRequest'.freeze
   PARAM_SAML_RESPONSE = 'samlResponse'.freeze
   PARAM_RELAY_STATE = 'relayState'.freeze
@@ -69,7 +70,12 @@ class SessionProxy
     MatchingOutcomeResponse.new(response || {}).tap(&:validate).outcome
   end
 
-private
+  def response_from_rp(cookies)
+    response = @api_client.get(RESPONSE_FROM_RP_PATH, cookies: select_cookies(cookies, CookieNames.session_cookies))
+    ResponseForRp.new(response || {}).tap(&:validate)
+  end
+
+  private
 
   def federation_info_for_session(cookies)
     session_cookies = select_cookies(cookies, CookieNames.session_cookies)

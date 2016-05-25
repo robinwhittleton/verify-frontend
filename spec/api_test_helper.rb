@@ -1,6 +1,7 @@
 def api_uri(path)
   URI.join(API_HOST, '/api/', path)
 end
+alias :api_url :api_uri
 
 def api_transactions_endpoint
   api_uri('transactions')
