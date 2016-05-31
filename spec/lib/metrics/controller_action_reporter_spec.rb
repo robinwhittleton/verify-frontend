@@ -10,7 +10,7 @@ module Metrics
     it 'should send total duration of event' do
       payload = { controller: 'SomeController', action: 'someAction' }
       duration = 0.060
-      start = Time.now
+      start = Time.now.utc
       finish = start + duration
       expect(statsd).to receive(:timing).with("SomeController.someAction.total_duration", duration * 1_000)
       allow(statsd).to receive(:timing)
@@ -22,7 +22,7 @@ module Metrics
       payload = { controller: 'AnotherController', action: 'anotherAction', view_runtime: view_runtime }
       allow(statsd).to receive(:timing)
       expect(statsd).to receive(:timing).with("AnotherController.anotherAction.view_runtime", view_runtime)
-      reporter.report('event_name', Time.now, Time.now, 'notification_id', payload)
+      reporter.report('event_name', Time.now.utc, Time.now.utc, 'notification_id', payload)
     end
 
     it 'should not send view rendering time if none is provided' do
@@ -32,7 +32,7 @@ module Metrics
       payload = { controller: 'AnotherController', action: 'anotherAction', view_runtime: view_runtime }
       allow(statsd).to receive(:timing)
       expect(statsd).not_to receive(:timing).with("AnotherController.anotherAction.view_runtime", view_runtime)
-      reporter.report('event_name', Time.now, Time.now, 'notification_id', payload)
+      reporter.report('event_name', Time.now.utc, Time.now.utc, 'notification_id', payload)
     end
   end
 end

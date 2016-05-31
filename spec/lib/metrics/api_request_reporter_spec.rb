@@ -10,7 +10,7 @@ module Metrics
     it 'should send total duration of event' do
       payload = { path: '/endpoint', method: 'get' }
       duration = 0.060
-      start = Time.now
+      start = Time.now.utc
       finish = start + duration
       expect(statsd).to receive(:timing).with("Api.request.get.total_duration", duration * 1_000)
       expect(statsd).to receive(:increment).with("Api.request.get.count")

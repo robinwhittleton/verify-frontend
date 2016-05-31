@@ -26,7 +26,7 @@ module Analytics
 
     before :each do
       expect(request).to receive(:url).and_return('www.thing.com')
-      expect(Time).to receive(:now).and_return(Time.new(2080))
+      expect(Time).to receive(:now).and_return(Time.new(2080).utc)
     end
 
     it 'should report all parameters to piwik' do

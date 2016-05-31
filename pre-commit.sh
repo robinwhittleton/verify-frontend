@@ -2,7 +2,7 @@
 
 . scripts/deploy.sh
 
-bundle exec govuk-lint-ruby app config lib spec
+bundle exec govuk-lint-ruby --rails app config lib spec
 success=$?
 
 # govuk-lint-sass is very quiet. Setting the output colour

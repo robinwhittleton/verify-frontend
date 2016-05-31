@@ -21,7 +21,7 @@ module Analytics
         'idsite' => @site_id,
         'action_name' => action_name,
         'url' => request.url,
-        'cdt' => Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+        'cdt' => Time.now.utc.strftime('%Y-%m-%d %H:%M:%S'),
         'cookie' => 'false',
       }
 
