@@ -46,6 +46,6 @@ private
   end
 
   def set_validation_error
-    errors.set(:base, [I18n.t('hub.will_it_work_for_me.question.errors.no_selection')])
+    errors.add(:base, I18n.t('hub.will_it_work_for_me.question.errors.no_selection'))
   end
 end

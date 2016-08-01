@@ -3,9 +3,9 @@ ruby '2.3.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7'
-gem 'rails-i18n', '~> 4.0'
-gem 'route_translator', '~> 4.2'
+gem 'rails', '5.0.0'
+gem 'rails-i18n', '~> 5.0'
+gem 'route_translator', '~> 5.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -65,14 +65,15 @@ group :development do
 end
 
 group :test, :development do
-  gem 'rspec', '~> 3.4.0'
-  gem 'rspec-rails', '~> 3.4.0'
+  gem 'rspec', '~> 3.5'
+  gem 'rspec-rails', '~> 3.5'
   gem 'capybara', '~> 2.6'
   gem 'capybara-puma'
   gem 'govuk-lint'
   gem 'webmock', require: false
   gem 'rack-test'
-  gem 'sinatra'
+  gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', require: nil, ref: 'a5da6fa82c46436f59ae482d07c1752ab908c852'
+  # gem 'rack-protection', git: 'https://github.com/sinatra/rack-protection.git', ref: '8d4f9d488d0591ac7b360d9137b94f8d68901f16'
   gem 'rack_session_access'
   gem 'headless'
 end
